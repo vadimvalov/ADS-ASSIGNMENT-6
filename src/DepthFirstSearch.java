@@ -1,6 +1,4 @@
 public class DepthFirstSearch<V> extends Search<V> {
-    
-    private Search<Vertex> search;
 
     public DepthFirstSearch(MyGraph<V> graph, V source) {
         super(source);
