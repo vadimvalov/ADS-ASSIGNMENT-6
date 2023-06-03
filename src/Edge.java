@@ -1,34 +1,34 @@
 import java.util.Objects;
 
-public class Edge<Vertex> {
-    private Vertex source;
-    private Vertex dest;
+public class Edge<V> {
+    private V source;
+    private V dest;
     private Double weight;
 
-    public Edge(Vertex source, Vertex dest, Double weight) {
+    public Edge(V source, V dest, Double weight) {
         this.source = source;
         this.dest = dest;
         this.weight = weight;
     }
 
-    public Edge(Vertex source, Vertex dest) {
+    public Edge(V source, V dest) {
         this.source = source;
         this.dest = dest;
     }
 
-    public void setSource(Vertex source) {
+    public void setSource(V source) {
         this.source = source;
     }
 
-    public Vertex getSource() {
+    public V getSource() {
         return source;
     }
 
-    public void setDest(Vertex dest) {
+    public void setDest(V dest) {
         this.dest = dest;
     }
 
-    public Vertex getDest() {
+    public V getDest() {
         return dest;
     }
 
@@ -44,8 +44,13 @@ public class Edge<Vertex> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Edge edge = (Edge) o;
+        Edge<?> edge = (Edge<?>) o;
         return Objects.equals(source, edge.source) &&
                 Objects.equals(dest, edge.dest);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(source, dest);
     }
 }

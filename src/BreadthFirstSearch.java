@@ -1,27 +1,28 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
-public class BreadthFirstSearch<Vertex> extends Search<Vertex>{
+public class BreadthFirstSearch {
+    private Search<Vertex> search;
 
     public BreadthFirstSearch(MyGraph<Vertex> graph, Vertex source) {
-        super(source);
+        search = new Search<>(source);
         bfs(graph, source);
     }
 
-    private void bfs(MyGraph<Vertex> graph, Vertex current) {
-        marked.add(current);
+    private void bfs(MyGraph<Vertex> graph, Vertex source) {
+        search.mark(source);
         Queue<Vertex> queue = new LinkedList<>();
-        queue.add(current);
+        queue.add(source);
+
         while (!queue.isEmpty()) {
-            Vertex v = queue.remove();
-            for (Vertex vertex : graph.adjacencyList(v)) {
-                if (!marked.contains(vertex)) {
-                    marked.add(vertex);
-                    edgeTo.put(vertex, v);
+            Vertex current = queue.poll();
+
+            for (Vertex vertex : graph.adjacencyList(current)) {
+                if (!search.isMarked(vertex)) {
+                    search.mark(vertex);
+                    search.addEdge(vertex, current);
                     queue.add(vertex);
                 }
             }
         }
     }
 }
-

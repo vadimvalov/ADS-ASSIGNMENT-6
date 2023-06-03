@@ -1,21 +1,11 @@
-import java.util.Map;
+public class Vertex {
+    private String data;
 
-public class vertex<V> {
-    private V data;
-    private Map<Vertex<V>, double> adjacentVertices;
-
-    public Vertex(){
-
+    public Vertex(String data) {
+        this.data = data;
     }
 
-    public void addAdjacentVertex(Vertex<V> destination, double weight) {
-        adjacentVertices.put(destination, weight);
+    public String getData() {
+        return data;
     }
-    
-    public V getData(){
-
-    }
-
-    public Map<Vertex<V>, Double> getAdjacentVertices() {
-        return adjacentVertices;
 }

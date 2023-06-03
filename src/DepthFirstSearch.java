@@ -1,21 +1,18 @@
+public class DepthFirstSearch {
+    private Search<Vertex> search;
 
-
-public class DepthFirstSearch<Vertex> extends Search<Vertex> {
     public DepthFirstSearch(MyGraph<Vertex> graph, Vertex source) {
-        super(source);
+        search = new Search<>(source);
         dfs(graph, source);
     }
 
-    private void dfs(MyGraph<Vertex> graph, Vertex current) {
-        marked.add(current);
-        count++;
-        for (Vertex v : graph.adjacencyList(current)) {
-            if (!marked.contains(v)) {
-                edgeTo.put(v, current);
-                dfs(graph, v);
+    private void dfs(MyGraph<Vertex> graph, Vertex source) {
+        search.mark(source);
+        for (Vertex vertex : graph.adjacencyList(source)) {
+            if (!search.isMarked(vertex)) {
+                search.addEdge(vertex, source);
+                dfs(graph, vertex);
             }
         }
     }
-
 }
-
